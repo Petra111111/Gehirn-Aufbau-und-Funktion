@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Basic HTML File</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <style>
+
+            h1 {
+              color:#202020;
+              background-color: #fdafc9;
+              padding-left: 40px;
+              padding-right: 40px;
+              padding-top: 40px;
+              padding-bottom: 40px;
+              font-size: 75px;
+              left: 0%;
+              margin-left: -0.75rem;
+              margin-right: -0.75rem;
+            }
+
+            h2 {
+              color: hsl(0, 0%, 13%);
+              margin-top: 40px;
+              padding-left: 45px;
+              padding-right: 15px;
+              font-size: 40px;
+              margin-bottom: 20px;
+            }
+
+            h3 {
+                color:#202020;
+                padding-left: 45px;
+                padding-right: 15px;
+                margin-bottom: 40px;
+                font-size: 25px;
+            }
+
+            .brain {
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 0 auto;
+              user-select: none;
+            }
+
+            .brain-column {
+              position: relative;
+              min-height: 320px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .hotspot {
+              position: absolute;
+              width: clamp(16px, 2.2vw, 28px);
+              height: clamp(16px, 2.2vw, 28px);
+              background: #ff0080;
+              border-radius: 50%;
+              cursor: pointer;
+              box-shadow: 0 0 0 4px rgba(216, 0, 90, 0.658);
+              transform: translate(-50%, -50%);
+              transition: transform .12s ease, box-shadow .12s ease;
+              z-index: 3;
+              display: inline-block;
+            }
+
+            .hotspot::after {
+              content: "";
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              width: max(44px, 2.8rem);
+              height: max(44px, 2.8rem);
+              border-radius: 50%;
+              background: transparent;
+            }
+
+            .hotspot:focus {
+              transform: translate(-50%, -50%) scale(.95);
+              outline: none;
+              box-shadow: 0 0 0 6px lab(58.77% 71.76 16.68 / 0.452), 0 0 0 2px lab(58.77% 71.76 16.68 / 0.452) inset;
+            }
+
+            .hotspot:focus-visible {
+              box-shadow: 0 0 0 6px lab(58.77% 71.76 16.68 / 0.452);
+            }
+
+            .info-box {
+              background: #fdafc9;
+              color: #202020;
+              padding: 18px;
+              border-radius: 12px;
+              font-size: 20px;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+              min-height: 300px;
+              margin-top: 70px;
+            }
+
+            .quiz-card {
+              position: relative;
+              margin: 3rem auto;
+              background: #fdafc9;
+              width: calc(100% - 48px);
+              padding: 25px;
+              max-width: 1000px;
+              border-radius: 12px;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+              max-width: 90%;
+              margin-left: 5%;
+              margin-right: 5%;
+            }
+
+            body {
+              background-color: #FFF6F4;
+              min-height: 100vh;
+            }
+
+            .answers {
+              color: #202020;
+              margin-top: 20px;
+              display: grid;
+              grid-template-columns: 1fr;
+              gap: 10px;
+            }
+
+            @media(min-width:700px) {
+              .answers {
+                grid-template-columns: 1fr 1fr;
+              }
+
+              .brain-column {
+                min-height: 420px;
+              }
+
+              .hotspot {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            @media(min-width:1000px) {
+              .answers {
+                grid-template-columns: repeat(2, 1fr);
+              }
+
+              .hotspot {
+                width: 24px;
+                height: 24px;
+              }
+            }
+
+
+            .progress {
+            font-size: 14px;
+            color: #202020;
+            margin-bottom: 10px;
+            background-color: #fdd3e4;
+            }
+
+            .answers {
+            margin-top: 20px;
+            }
+
+            .answer {
+            background: #ffcedd;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            }
+
+            .answer:hover {
+            background: #d193a5;
+            }
+
+            .answer.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+            }
+
+            .answer.wrong {
+            border-color: #f44336;
+            background: #fdecea;
+            }
+
+            #next-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #043811;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            }
+
+            #next-btn.hidden {
+            display: none;
+            }
+      </style>
+  </head>
+    <body>
+        <div class="container-fluid">
+        <h1>Das Gehirn</h1>
+            <h2>Was ist das Gehirn?</h2>
+                <h3>Das menschliche Gehirn ist eines der komplexesten Organe überhaupt. Es bildet zusammen mit dem Rückenmark das zentrale Nervensystem und ist die Schaltzentrale des Körpers. Im Gehirn werden Informationen aus der Umwelt verarbeitet, Bewegungen gesteuert, Entscheidungen getroffen und Gefühle erlebt. Ohne das Gehirn wären Denken, Lernen, Erinnern und bewusstes Handeln nicht möglich. Anatomisch lässt sich das Gehirn in mehrere Hauptbereiche unterteilen. Der größte Teil ist das Großhirn (Cerebrum). Es besteht aus zwei Hemisphären, die durch den sogenannten Balken miteinander verbunden sind. Die Oberfläche des Großhirns ist stark gefaltet, wodurch seine Fläche vergrößert wird.</h3>
+                <div class="container">
+                  <div class="row brain-row align-items-start">
+                    <div class="col-12 col-md-6 brain-column">
+                      <img src="brain.png" class="brain img-fluid" alt="Gehirn" />
+
+                      <div class="hotspot" data-x="23" data-y="40" data-text="Der Stirnlappen (Frontallappen) ist der vorderste, größte und am weitesten entwickelte Teil des menschlichen Großhirns. Er befindet sich hinter der Stirn und steuert wesentliche kognitive Funktionen wie Planung, Denken, Emotionen, Persönlichkeit sowie willkürliche Bewegungen" tabindex="0" role="button" aria-controls="infoBox" aria-label="Stirnlappen"></div>
+
+                      <div class="hotspot" data-x="67" data-y="25" data-text="Der Scheitellappen (Parietallappen) liegt im oberen mittleren Bereich des Großhirns. Er verarbeitet Sinneseindrücke wie Berührung, Druck, Schmerz und Temperatur. Außerdem ist er wichtig für die räumliche Orientierung und dafür, die Lage des eigenen Körpers wahrzunehmen. Zusätzlich spielt er eine Rolle beim Lesen, Schreiben und Rechnen, da hier verschiedene Informationen miteinander verknüpft werden." tabindex="0" role="button" aria-controls="infoBox" aria-label="Scheitellappen"></div>
+
+                      <div class="hotspot" data-x="53" data-y="63" data-text="Der Schläfenlappen (Temporallappen) befindet sich seitlich am Gehirn auf Höhe der Ohren. Er ist vor allem für das Hören und das Sprachverständnis zuständig. Darüber hinaus ist er wichtig für das Gedächtnis und das Abspeichern von Erinnerungen. Auch Emotionen werden in diesem Bereich verarbeitet, weshalb er eng mit dem limbischen System zusammenarbeitet." tabindex="0" role="button" aria-controls="infoBox" aria-label="Schläfenlappen"></div>
+
+                      <div class="hotspot" data-x="57" data-y="87" data-text="Der Hirnstamm verbindet das Gehirn mit dem Rückenmark. Er steuert lebenswichtige Funktionen, die unbewusst ablaufen, wie Atmung, Herzschlag, Blutdruck und Reflexe. Außerdem ist er am Schlaf-Wach-Rhythmus beteiligt. Schäden am Hirnstamm können daher besonders gefährlich sein." tabindex="0" role="button" aria-controls="infoBox" aria-label="Hirnstamm"></div>
+
+                      <div class="hotspot" data-x="88" data-y="58" data-text="Der Hinterhauptslappen (Okzipitallappen) liegt am hinteren Teil des Gehirns. Er ist das Sehzentrum des Gehirns und verarbeitet visuelle Informationen wie Farben, Formen und Bewegungen. Erst durch diesen Bereich können wir Bilder erkennen und unsere Umwelt bewusst wahrnehmen. Schäden am Hinterhauptslappen können zu Sehbeeinträchtigungen führen." tabindex="0" role="button" aria-controls="infoBox" aria-label="Hinterhauptslappen"></div>
+
+                      <div class="hotspot" data-x="72" data-y="84" data-text="Das ist das Kleinhirn (Cerebellum). Es spielt eine entscheidende Rolle bei der Koordination von Bewegungen, dem Gleichgewicht und der Feinmotorik. Obwohl das Kleinhirn kleiner ist als das Großhirn, enthält es sehr viele Nervenzellen und arbeitet eng mit anderen Hirnregionen zusammen, um Bewegungen präzise und flüssig auszuführen." tabindex="0" role="button" aria-controls="infoBox" aria-label="Kleinhirn"></div>
+                    </div>
+
+                    <div class="col-12 col-md-6 d-flex align-items-center">
+                      <div id="infoBox" class="info-box w-100">
+                        <p>Drücke auf ein der pinken Punkte, um mehr zu erfahren!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+
+  <div class="quiz-card">
+  <div class="progress" id="progress">Frage 1 von 3</div>
+
+  <h2 id="Frage">Frage text</h2>
+
+  <div class="answers" id="answers"></div>
+
+  <button id="next-btn" class="hidden" type="button">Nächste Frage</button>
+</div>
+
+    <script>
+const Fragen = [
+  {
+    Frage: "Zu welchem Teil des Gehirns gehört der Stirnlappen?",
+    answers: [
+      { text: "Kleinhirn", correct: false },
+      { text: "Großhirn", correct: true },
+      { text: "Hirnstamm", correct: false },
+      { text: "Rückenmark", correct: false }
+    ]
+  },
+  {
+    Frage: "Welche Aufgabe hat der Hinterhauptslappen (Okzipitallappen)?",
+    answers: [
+      { text: "Steuerung von Gleichgewicht und Feinmotorik", correct: false },
+      { text: "Verarbeitung von Hörinformationen", correct: false },
+      { text: "Kontrolle der Atmung", correct: false },
+      { text: "Verarbeitung von Sehinformationen", correct: true }
+    ]
+  },
+  {
+    Frage: "Welche Funktion ist typisch für den Schläfenlappen (Temporallappen)?",
+    answers: [
+      { text: "Verarbeitung von Berührung und Schmerz", correct: false },
+      { text: "Regulation des Herzschlags", correct: false },
+      { text: "Sprachverständnis und Hören", correct: true },
+      { text: "Steuerung willkürlicher Bewegungen", correct: false }
+    ]
+  }
+];
+
+let current = 0;
+let answered = false;
+
+const questionEl = document.getElementById("Frage");
+const answersEl = document.getElementById("answers");
+const nextBtn = document.getElementById("next-btn");
+const progressEl = document.getElementById("progress");
+
+function loadQuestion() {
+  answered = false;
+  nextBtn.classList.add("hidden");
+  answersEl.innerHTML = "";
+
+  const q = Fragen[current];
+  questionEl.textContent = q.Frage;
+  progressEl.textContent = `Frage ${current + 1} von ${Fragen.length}`;
+
+  q.answers.forEach(answer => {
+    const div = document.createElement("div");
+    div.className = "answer";
+    div.textContent = answer.text;
+
+    div.onclick = () => {
+      if (answered) return;
+      answered = true;
+
+      if (answer.correct) {
+        div.classList.add("correct");
+      } else {
+        div.classList.add("wrong");
+        showCorrectAnswer();
+      }
+
+      nextBtn.classList.remove("hidden");
+    };
+
+    answersEl.appendChild(div);
+  });
+}
+
+function showCorrectAnswer() {
+  document.querySelectorAll(".answer").forEach((el, index) => {
+    if (Fragen[current].answers[index].correct) {
+      el.classList.add("correct");
+    }
+  });
+}
+
+nextBtn.onclick = () => {
+  current++;
+  if (current < Fragen.length) {
+    loadQuestion();
+  } else {
+    questionEl.textContent = "Quiz fertig!";
+    answersEl.innerHTML = "";
+    progressEl.textContent = "";
+    nextBtn.classList.add("hidden");
+  }
+};
+
+loadQuestion();
+</script>
+
+
+<script>
+  const hotspots = Array.from(document.querySelectorAll(".hotspot"));
+  const infoBox = document.getElementById("infoBox");
+  const brainImg = document.querySelector('.brain');
+
+  function showHotspotInfo(spot) {
+    const text = spot.dataset.text || '';
+    infoBox.innerHTML = `<p>${text}</p>`;
+  }
+
+  function positionHotspots() {
+    if (!brainImg || !brainImg.complete) return;
+    const imgRect = brainImg.getBoundingClientRect();
+    const colRect = brainImg.parentElement.getBoundingClientRect();
+
+    hotspots.forEach(spot => {
+      const x = Number(spot.dataset.x);
+      const y = Number(spot.dataset.y);
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        const left = spot.style.left || window.getComputedStyle(spot).left || '0%';
+        const top = spot.style.top || window.getComputedStyle(spot).top || '0%';
+        spot.style.left = left;
+        spot.style.top = top;
+        return;
+      }
+
+      const offsetLeft = brainImg.offsetLeft;
+      const offsetTop = brainImg.offsetTop;
+      const px = Math.round(offsetLeft + (brainImg.clientWidth * x / 100));
+      const py = Math.round(offsetTop + (brainImg.clientHeight * y / 100));
+
+      spot.style.left = px + 'px';
+      spot.style.top = py + 'px';
+    });
+  }
+
+  function onHotspotKey(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showHotspotInfo(e.currentTarget);
+      e.currentTarget.classList.add('focused');
+    }
+  }
+
+  hotspots.forEach(spot => {
+    spot.addEventListener('click', () => showHotspotInfo(spot));
+    spot.addEventListener('keydown', onHotspotKey);
+  });
+
+  function debounce(fn, wait = 80) {
+    let t;
+    return (...args) => {
+      clearTimeout(t);
+      t = setTimeout(() => fn(...args), wait);
+    };
+  }
+
+  window.addEventListener('resize', debounce(positionHotspots, 60));
+  if (brainImg) {
+    if (brainImg.complete) positionHotspots();
+    brainImg.addEventListener('load', positionHotspots);
+  }
+
+  document.addEventListener('DOMContentLoaded', positionHotspots);
+</script>
+
+    </body>
+</html>
