@@ -98,7 +98,7 @@
             }
 
             .info-box {
-              background: #038c7f;
+              background: #1ebea4;
               color: #0D0D0D;
               padding: 18px;
               border-radius: 12px;
@@ -165,7 +165,7 @@
             .progress {
             font-size: 16px;
             color: #0D0D0D;
-            padding-bottom: 22px;
+            padding-bottom: 23px;
             margin-bottom: 10px;
             background-color: #a9d9d0;
             padding-left: 5px;
@@ -190,13 +190,13 @@
             }
 
             .answer.correct {
-            border-color: #4caf50;
-            background: #e8f5e9;
+            border-color: #45b149;
+            background: #a4faab;
             }
 
             .answer.wrong {
             border-color: #f44336;
-            background: #fdecea;
+            background: #fca299;
             }
 
             #next-btn {
@@ -205,7 +205,7 @@
             padding: 12px;
             border: none;
             border-radius: 8px;
-            background: #a9d9d0;
+            background: #1ebea4;
             color: #0D0D0D;
             font-size: 16px;
             cursor: pointer;
@@ -361,7 +361,7 @@ loadQuestion();
   function showHotspotInfo(spot) {
     const text = spot.dataset.text || '';
     const underlinedText = text.replace(
-      /(?:Stirnlappen Frontallappen|kognitive Funktionen|Planung|Denken|Emotionen|Persönlichkeit|willkürliche Bewegungen|Scheitellappen Parietallappen|Sinneseindrücke|räumliche Orientierung|verschiedene Informationen|miteinander verbunden|Schläfenlappen Temporallappen|Hören|Sprachverständnis|Gedächtnis|Abspeichern von Erinnerungen|limbischen System zusammenarbeitet|Hirnstamm|verbindet das Gehirn mit dem Rückenmark|steuert lebenswichtige Funktionen|unbewusst|Schlaf-Wach-Rhythmus|besonders gefährlich|Kleinhirn Cerebellum|Koordination von Bewegungen|Gleichgewicht|Feinmotorik|sehr viele Nervenzellen|arbeitet eng mit anderen Hirnregionen zusammen|Hinterhauptslappen Okzipitallappen|Sehzentrum|verarbeitet visuelle Informationen|Bilder erkennen|Umwelt bewusst wahrnehmen|Schäden|Sehbeeinträchtigung)/g,
+      /(?:Stirnlappen|Frontallappen|kognitive Funktionen|Planung|Denken|Emotionen|Persönlichkeit|willkürliche Bewegungen|Scheitellappen|Parietallappen|Sinneseindrücke|räumliche Orientierung|verschiedene Informationen|miteinander verbunden|Schläfenlappen|Temporallappen|Hören|Sprachverständnis|Gedächtnis|Abspeichern von Erinnerungen|limbischen System zusammenarbeitet|Hirnstamm|verbindet das Gehirn mit dem Rückenmark|steuert lebenswichtige Funktionen|unbewusst|Schlaf-Wach-Rhythmus|besonders gefährlich|Kleinhirn|Cerebellum|Koordination von Bewegungen|Gleichgewicht|Feinmotorik|sehr viele Nervenzellen|arbeitet eng mit anderen Hirnregionen zusammen|Hinterhauptslappen|Okzipitallappen|Sehzentrum|verarbeitet visuelle Informationen|Bilder erkennen|Umwelt bewusst wahrnehmen|Schäden|Sehbeeinträchtigung)/g,
       '<u>$&</u>'
       
     );
