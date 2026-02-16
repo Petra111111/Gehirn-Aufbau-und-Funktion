@@ -220,7 +220,7 @@
         <div class="container-fluid">
         <h1>Das Gehirn</h1>
             <h2>Was ist das Gehirn?</h2>
-                <h3>Das <u>menschliche Gehirn</u> ist eines der <u>komplexesten Organe</u> überhaupt. Es bildet zusammen <u>mit dem Rückenmark das zentrale Nervensystem</u> und ist die <u>Schaltzentrale des Körpers</u>. Im Gehirn werden <u>Informationen aus der Umwelt verarbeitet, Bewegungen gesteuert, Entscheidungen getroffen und Gefühle erlebt</u>. Ohne das Gehirn wären <u>Denken, Lernen, Erinnern und bewusstes Handeln</u> nicht möglich. Anatomisch lässt sich das Gehirn <u>in mehrere Hauptbereiche unterteilen</u>. Der größte Teil ist das <u>Großhirn (Cerebrum)</u>. Es besteht aus <u>zwei Hemisphären</u>, die durch den sogenannten <u>Balken miteinander verbunden</u> sind. Die <u>Oberfläche</u> des Großhirns ist <u>stark gefaltet</u>, wodurch seine <u>Fläche vergrößert</u> wird.</h3>
+                <h3>Das menschliche Gehirn ist eines der komplexesten Organe überhaupt. Es bildet zusammen <b>mit dem Rückenmark das zentrale Nervensystem</b> und ist die <b>Schaltzentrale des Körpers</b>. Im Gehirn werden <b>Informationen aus der Umwelt verarbeitet, Bewegungen gesteuert, Entscheidungen getroffen und Gefühle erlebt</b>. Ohne das Gehirn wären Denken, Lernen, Erinnern und bewusstes Handeln nicht möglich. Anatomisch lässt sich das Gehirn in mehrere Hauptbereiche unterteilen. Der größte Teil ist das <b>Großhirn (Cerebrum)</b>. Es besteht aus zwei Hemisphären, die durch den sogenannten Balken miteinander verbunden sind. Die Oberfläche des Großhirns ist <b>stark gefaltet</b>, wodurch seine Fläche vergrößert wird.</h3>
                 <div class="container">
                   <div class="row brain-row align-items-start">
                     <div class="col-12 col-md-6 brain-column">
@@ -360,12 +360,12 @@ loadQuestion();
 
   function showHotspotInfo(spot) {
     const text = spot.dataset.text || '';
-    const underlinedText = text.replace(
-      /(?:Stirnlappen|Frontallappen|kognitive Funktionen|Planung|Denken|Emotionen|Persönlichkeit|willkürliche Bewegungen|Scheitellappen|Parietallappen|Sinneseindrücke|räumliche Orientierung|verschiedene Informationen|miteinander verbunden|Schläfenlappen|Temporallappen|Hören|Sprachverständnis|Gedächtnis|Abspeichern von Erinnerungen|limbischen System zusammenarbeitet|Hirnstamm|verbindet das Gehirn mit dem Rückenmark|steuert lebenswichtige Funktionen|unbewusst|Schlaf-Wach-Rhythmus|besonders gefährlich|Kleinhirn|Cerebellum|Koordination von Bewegungen|Gleichgewicht|Feinmotorik|sehr viele Nervenzellen|arbeitet eng mit anderen Hirnregionen zusammen|Hinterhauptslappen|Okzipitallappen|Sehzentrum|verarbeitet visuelle Informationen|Bilder erkennen|Umwelt bewusst wahrnehmen|Schäden|Sehbeeinträchtigung)/g,
-      '<u>$&</u>'
+    const boldText = text.replace(
+      /(?:Stirnlappen|Frontallappen|kognitive Funktionen|Scheitellappen|Parietallappen|Sinneseindrücke|räumliche Orientierung|verschiedene Informationen|miteinander verbunden|Schläfenlappen|Temporallappen|Hören|Sprachverständnis|Gedächtnis|limbischen System zusammenarbeitet|Hirnstamm|verbindet|Gehirn mit|Rückenmark|steuert lebenswichtige Funktionen|unbewusst|besonders gefährlich|Kleinhirn|Cerebellum|Koordination von Bewegungen|Gleichgewicht|Feinmotorik|arbeitet eng mit anderen Hirnregionen zusammen|Hinterhauptslappen|Okzipitallappen|Sehzentrum|verarbeitet visuelle Informationen|Schäden|Sehbeeinträchtigungen)/g,
+      '<b>$&</b>'
       
     );
-    infoBox.innerHTML = `<p>${underlinedText}</p>`;
+    infoBox.innerHTML = `<p>${boldText}</p>`;
   }
 
   function positionHotspots() {
